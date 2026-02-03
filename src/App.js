@@ -4,6 +4,7 @@ import Register from "./pages/Auth/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Dashboard/Profile";
 import Products from "./pages/Dashboard/Products";
+import Chats from "./pages/Chats";
 import ProductDetail from "./pages/Dashboard/ProductDetail";
 import ImageUpload from "./pages/Dashboard/ImageUpload";
 import ProtectedRoute from "./routes/ProtectedRoutes";
@@ -19,9 +20,15 @@ function App() {
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
+
+        {/* independent pages with same layout  */}
+        <Route path="/" element={<Layout />}>
+          <Route path="chats" element={<Chats />} />
+        </Route>
+
+        {/* pages under dashboard with common layout */}
         <Route path="/dashboard" element={<Layout />}>
           <Route index element={<Dashboard />} />
-
           {/* ✅ RELATIVE paths */}
           <Route path="profile" element={<Profile />} />
           <Route path="products" element={<Products />} />

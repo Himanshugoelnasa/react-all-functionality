@@ -12,6 +12,7 @@ import { setAuth } from "./store/slices/userSlice";
 import { authChannel, broadcastAuthToTab } from "./utils/authBroadcast";
 import { logout } from "./store/slices/userSlice";
 import { getTabId } from "./utils/tabId";
+import { SocketProvider } from './socket/socketProvider';
 
 const TAB_ID = getTabId();
 
@@ -53,11 +54,13 @@ authChannel.onmessage = (event) => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+   <SocketProvider>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
+    </SocketProvider>
   </BrowserRouter>
 );
 
