@@ -51,9 +51,9 @@ const NavbarMenu = () => {
     const userName = useSelector(state => state.auth.user.name);
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="light">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand as={Link} to="/dashboard">
+                    <Navbar.Brand as={Link} to="/dashboard" className="text-5xl font-bold">
                         Dashboard
                     </Navbar.Brand>
 
@@ -72,7 +72,7 @@ const NavbarMenu = () => {
                             <Nav.Link as={Link} to="/dashboard/image-upload">
                                 Image Upload
                             </Nav.Link>
-                            <Nav.Link as={Link} to="/chats">
+                            <Nav.Link as={Link} to="/chats" className="font-bold">
                                 Chats
                             </Nav.Link>
                         </Nav>

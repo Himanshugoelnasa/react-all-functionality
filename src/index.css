@@ -1,13 +1,212 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Chat Portal Design System */
+
+@layer base {
+  :root {
+    --background: 220 20% 10%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 14%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 187 85% 53%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 187 75% 45%;
+    --accent-foreground: 220 20% 10%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 18%;
+    --ring: 187 85% 53%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 187 85% 53%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 187 85% 53%;
+
+    /* Chat specific */
+    --message-sent: 187 70% 25%;
+    --message-sent-foreground: 210 20% 98%;
+    --message-received: 220 15% 18%;
+    --message-received-foreground: 210 20% 90%;
+    --online: 142 70% 50%;
+    --away: 45 90% 55%;
+    --offline: 0 0% 45%;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit !important;
+  }
+
+  .chat-container {
+    @apply h-screen flex overflow-hidden;
+  }
+
+  .chat-sidebar {
+    @apply w-80 bg-sidebar flex flex-col border-r border-sidebar-border;
+  }
+
+  .chat-main {
+    @apply flex-1 flex flex-col bg-background;
+  }
+
+  .message-bubble-sent {
+    @apply px-4 py-2.5 rounded-2xl rounded-br-md max-w-[70%] ml-auto;
+    background: hsl(var(--message-sent));
+    color: hsl(var(--message-sent-foreground));
+  }
+
+  .message-bubble-received {
+    @apply px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[70%];
+    background: hsl(var(--message-received));
+    color: hsl(var(--message-received-foreground));
+  }
+
+  .contact-item {
+    @apply flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200;
+  }
+
+  .contact-item:hover {
+    background: hsl(var(--sidebar-accent));
+  }
+
+  .contact-item.active {
+    background: hsl(var(--sidebar-accent));
+    border-left: 3px solid hsl(var(--primary));
+  }
+
+  .status-dot {
+    @apply w-3 h-3 rounded-full absolute bottom-0 right-0 border-2;
+    border-color: hsl(var(--sidebar-background));
+  }
+
+  .status-online {
+    background: hsl(var(--online));
+  }
+
+  .status-away {
+    background: hsl(var(--away));
+  }
+
+  .status-offline {
+    background: hsl(var(--offline));
+  }
+
+  .chat-input-container {
+    @apply p-4 border-t border-border bg-card;
+  }
+
+  .chat-input {
+    @apply w-full px-4 py-3 rounded-full bg-input border-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all;
+  }
+
+  .send-button {
+    @apply p-3 rounded-full transition-all duration-200;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .send-button:hover {
+    background: hsl(var(--accent));
+    transform: scale(1.05);
+  }
+
+  .header-bar {
+    @apply flex items-center justify-between p-4 border-b border-border bg-card;
+  }
+
+  /* Auth pages */
+  .auth-container {
+    @apply min-h-screen flex items-center justify-center p-4;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 20% 6%) 100%);
+  }
+
+  .auth-card {
+    @apply w-full max-w-md p-8 rounded-2xl bg-card border border-border shadow-xl;
+  }
+
+  .auth-input {
+    @apply w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all;
+  }
+
+  .auth-button {
+    @apply w-full py-3 rounded-xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .auth-button:hover:not(:disabled) {
+    background: hsl(var(--accent));
+    transform: translateY(-1px);
+  }
+
+  .auth-checkbox {
+    @apply w-4 h-4 rounded bg-input border-border accent-primary;
+  }
+
+  .auth-social-button {
+    @apply flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-border bg-muted/50 text-foreground font-medium transition-all hover:bg-muted;
+  }
+
+  /* New Chat page */
+  .new-chat-container {
+    @apply min-h-screen flex items-center justify-center p-4;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 20% 6%) 100%);
+  }
+
+  .new-chat-card {
+    @apply w-full max-w-2xl p-8 rounded-2xl bg-card border border-border shadow-xl;
+  }
+
+  .new-chat-tab {
+    @apply flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-muted-foreground;
+  }
+
+  .new-chat-tab:hover {
+    @apply bg-muted text-foreground;
+  }
+
+  .new-chat-tab.active {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .new-chat-contact-item {
+    @apply flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all duration-200 hover:bg-muted;
+  }
 }

@@ -13,6 +13,7 @@ import { authChannel, broadcastAuthToTab } from "./utils/authBroadcast";
 import { logout } from "./store/slices/userSlice";
 import { getTabId } from "./utils/tabId";
 import { SocketProvider } from './socket/socketProvider';
+import './index.css'
 
 const TAB_ID = getTabId();
 

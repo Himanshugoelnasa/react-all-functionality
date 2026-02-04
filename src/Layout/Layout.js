@@ -8,7 +8,7 @@ const Layout = () => {
       <Navbar />
 
       {/* Child routes render HERE */}
-      <Container fluid className="p-4">
+      <Container fluid className="p-0">
         <Outlet />
       </Container>
     </>
