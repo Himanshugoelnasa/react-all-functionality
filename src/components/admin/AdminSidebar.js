@@ -10,8 +10,8 @@ import {
   Bell,
   Search,
 } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import { Input } from "../ui/input";
+import { Badge } from "../ui/badge";
 
 const menuItems = [
   {

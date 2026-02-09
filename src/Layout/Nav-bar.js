@@ -62,24 +62,34 @@ const NavbarMenu = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         {/* LEFT NAV */}
                         <Nav className="me-auto">
-                            {/* 🔥 FIX: Wrap OpenInNewTab inside Nav.Link */}
-                            <Nav.Link as="span">
-                                <OpenInNewTab to="/dashboard/products">
+                            
+                            <Nav.Link  as={Link} to="/dashboard/product-details">
+                                {/* <OpenInNewTab to="/dashboard/products">
                                     Products (New Tab)
-                                </OpenInNewTab>
+                                </OpenInNewTab> */}
+                                Product Details
                             </Nav.Link>
-
-                            <Nav.Link as={Link} to="/dashboard/image-upload">
-                                Image Upload
+                            
+                            <Nav.Link as={Link} to="/dashboard/file-upload">
+                                File Upload
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/dashboard/export" className="font-bold">
+                                Export Data
                             </Nav.Link>
                             <Nav.Link as={Link} to="/chats" className="font-bold">
                                 Chats
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/dashboard/tracking" className="font-bold">
+                                Tracking
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/dashboard/payment" className="font-bold">
+                                Payment
                             </Nav.Link>
                         </Nav>
 
                         <Nav className="">
                             <span className='nav-link'>
-                                Status: {isConnected ? "🟢 Online" : "🔴 Offline"} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                {isConnected ? "🟢 Online" : "🔴 Offline"} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                             </span>
                         </Nav>
 
